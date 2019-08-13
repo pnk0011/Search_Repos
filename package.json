@@ -17,7 +17,7 @@
      "scripts": {
           "start": "node server.js",
           "stop": "pkill --signal SIGINT app",
-          "postinstall": "ng build"
+          "build": "webpack"
         
      },
      "main": "server.js",
