@@ -11,8 +11,8 @@
      "@angular/cli": "1.4.9",
      "@angular/compiler-cli": "^4.4.6",
      "engines": {
-          "node": "6.11.0",
-          "npm": "3.10.10"
+          "node": "6.16.0",
+          "npm": "6.9.0"
         },
      "scripts": {
           "start": "node server.js",
