@@ -17,7 +17,8 @@
      "scripts": {
           "start": "node server.js",
           "stop": "pkill --signal SIGINT app",
-          "build": "webpack"
+          "build": "ng build",
+          "heroku-postbuild": "ng build --prod" 
         
      },
      "main": "server.js",
