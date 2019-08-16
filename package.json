@@ -4,8 +4,8 @@
      "description": "My Project",
      "dependencies": {
           "express": "*",
-          "@angular/compiler": "6.10.3",
-         "@angular/compiler-cli": "6.10.3"
+          "@angular/cli": "1.4.9",
+         "@angular/compiler-cli": "^4.4.6"
      },
      "engine": {   "node" : "10.3.0",
                     "npm" : "6.10.3"
