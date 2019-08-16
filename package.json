@@ -5,7 +5,10 @@
      "dependencies": {
           "express": "*"
      },
-     "engine": "node >=0.6.x",
+     "engine": {   "node" : "10.3.0",
+                    "npm" : "6.10.3"
+     
+     },
      "scripts": {
           "start": "node server.js",
           "heroku-postbuild": "ng build --prod"
