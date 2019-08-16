@@ -13,9 +13,8 @@
     "@angular/platform-browser-dynamic": "6.0.3",
     "@angular/router": "6.0.3",
     "core-js": "^2.5.3",
-    "@angular/common": "6.0.3",
-    "rxjs": "^6.2.0",
-    "zone.js": "^0.8.26"
+    "@angular/common": "6.0.3"
+    
      },
      "engine": {   "node" : "10.3.0",
                     "npm" : "6.10.3"
