@@ -1,61 +1,100 @@
 angular.module('app', [])
-  .controller('gitHubDataController', ['$scope', '$http', function ($scope, $http) {
+  .controller('Controller', ['$scope', '$http', function ($scope, $http) {
 
-    $scope.username = "pnk0011";
-    $scope.search = "";
-    $scope.putloader = false;
-    $scope.repoData;
-    $scope.userData = [];
-    $scope.pageCount = 1;
-    $scope.iferror = false;
-    $scope.putLoader = function () {
+    window.onscroll = function () { myFunction() };
 
-      $scope.putloader = true;
+    var header = document.getElementById("Doctorfixit");
+    var sticky = header.offsetTop;
 
-    }
-
-    $scope.next = function () {
-      if ($scope.pageCount < $scope.totalPages) {
-        $scope.pageCount += 1;
-        $scope.putLoader();
-        $scope.getData();
-      }
-    }
-
-    $scope.previous = function () {
-      if ($scope.pageCount > 1) {
-        $scope.pageCount -= 1;
-        $scope.putLoader();
-        $scope.getData();
+    function myFunction() {
+      if (window.pageYOffset > sticky) {
+        header.classList.add("sticky");
+      } else {
+        header.classList.remove("sticky");
       }
     }
 
     $scope.getData = function () {
 
+      var auth = 'dGVzdHVzZXI6dGVzdHBhc3N3b3Jk';
+
       var config = {
         headers: {
 
-          'Accept': 'pplication/vnd.github.mercy-preview+json',
+          "Authorization": "Basic " + auth,
 
         }
       };
 
-      $http.get("https://api.github.com/search/repositories?q=language:" + $scope.search + "&sort=forks&order=desc&page=" + $scope.pageCount + "&per_page=20", config)
+      $http.get("https://sandoratest-service.herokuapp.com/api/property/quickView?long=-121.88632860000001&lat=37.3382082&distance=100&userId=null", config)
         .then(function (response) {
-
-          $scope.userData = response.data.items;
-          $scope.putloader = false;
-          $scope.iferror = false;
-          $scope.totalPages = Math.ceil(response.data.total_count / 20);
+          $scope.proData = response.data.data;
           console.log('resonse from git API : ' + JSON.stringify(response.data));
 
         })
         .catch(function (data) {
 
-          $scope.userData = [];
-          $scope.putloader = false;
-          $scope.iferror = true;
+          $scope.proData = [];
+         
 
         });
     }
+
+    $scope.getData();
+    $scope.MINRENTVAL = 0;
+    $scope.MAXRENTVAL = 9999999;
+
+    $scope.setMinRange = function () {
+      $scope.MINRENTVAL = $scope.MINRENT;
+    }
+
+    $scope.setMaxRange = function () {
+      $scope.MAXRENTVAL = $scope.MAXRENT;
+    }
+
+
+    $scope.clearSearchValues = function () {
+      $scope.BEDSVAL = '';
+      $scope.BEDS = '';
+      $scope.BATHVAL = '';
+      $scope.BATH = '';
+      $scope.MINRENT = '';
+      $scope.MAXRENT = '';
+      $scope.MINRENTVAL = 0;
+      $scope.MAXRENTVAL = 9999999;
+    }
+    $scope.BEDSVAL = '';
+    $scope.setBed = function () {
+      if ($scope.BEDS == 0) {
+        $scope.BEDSVAL = '';
+      } else {
+        $scope.BEDSVAL = $scope.BEDS;
+      }
+    }
+    $scope.BATHVAL = '';
+    $scope.setBath = function () {
+      if ($scope.BATH == 0) {
+        $scope.BATHVAL = '';
+      } else {
+        $scope.BATHVAL = $scope.BATH;
+      }
+    }
+
+
+    $scope.greaterThan = function (prop, val) {
+      return function (item) {
+        if (item[prop] >= val) return true;
+      }
+    }
+
+    $scope.lessThan = function (prop, val) {
+      return function (item) {
+        if (item[prop] <= val) return true;
+      }
+    }
+
+
+
   }]);
+
+
